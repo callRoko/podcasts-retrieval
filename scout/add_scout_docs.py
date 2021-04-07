@@ -17,4 +17,4 @@ for paths in pathlist2:
         bad_files.append(paths)
     except Exception:
         raise Exception('bad file')
-print(bad_files)
+# print(bad_files)
