@@ -1,6 +1,7 @@
-import json 
+import json
 import glob
 
+'''In this script, the transcript data is created and added to a new folder'''
 #copy spotify files over from local machine
 #get list of files from raw transcript data
 filepaths = glob.glob('./data/spotify-transcripts/podcasts-transcripts-0to2/spotify-podcasts-2020/podcasts-transcripts/*/*/*/*.json', recursive=True)
@@ -23,7 +24,7 @@ for filepath in filepaths[:1000]:
 trans_keys = sorted(episode_transcripts.keys())
 with open('./podcast_data/transcripts.txt', 'wb') as lines:
     for epi in trans_keys:
-        line = ' '.join(episode_transcripts[epi]) 
+        line = ' '.join(episode_transcripts[epi])
         lines.write(line.encode("utf-8") + '\n'.encode("utf-8"))
 # #get ready to make training data
 # summary data from episode_dict.json file
@@ -34,5 +35,3 @@ with open('data/episode_dict.json', 'r', encoding='utf-8') as summaries:
         episode_id = id.split(':')[2]
         episode_summary = epi_sum[id]
         podcast_epi_summary.append(episode_summary)
-
-        

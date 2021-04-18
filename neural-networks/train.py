@@ -3,6 +3,7 @@ import subprocess
 import logging
 import os
 
+'''This script was created to train the podcast transcript data'''
 MAX_STEPS = 300000
 STEPS_PER_VALIDATION = 1000
 STEPS_PER_CHECKPOINT = 20000

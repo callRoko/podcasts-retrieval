@@ -1,6 +1,7 @@
 #for this script I will need to create a text file with all the episode ids
 import json
 import glob
+'''In this script, podcast episode ids are created for the training data'''
 
 filepaths = glob.glob('./data/spotify-transcripts/podcasts-transcripts-0to2/spotify-podcasts-2020/podcasts-transcripts/*/*/*/*.json', recursive=True)
 print("sorting podcast ids")
@@ -14,7 +15,7 @@ print("writing ids file")
 with open('./data/podcast_episode_ids.txt', 'w') as ids:
     for key in sorted_podcast_ids:
         ids.write(key+'\n')
-print("getting episode summaries")      
+print("getting episode summaries")
 #attempt to open podcast summary json file
 summary_ids = []
 episode_summaries = []
@@ -46,5 +47,3 @@ with open('./data/podcast_episode_ids.txt', 'r') as podcasts:
                     training_summaries = podcast_sums[podcast_id]
                     print(training_summaries.encode("utf-8"))
                     data.write(training_summaries.encode("utf-8")+"\n".encode("utf-8"))
-                        
-                

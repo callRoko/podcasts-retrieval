@@ -2,7 +2,7 @@ import tensorflow as tf
 import subprocess
 import logging
 import os
-
+'''This script is used to test our podcast data'''
 model_path = "model/"
 model_pattern = "model/{}.ckpt-{}"
 data_pattern = "data/test.{}.txt"

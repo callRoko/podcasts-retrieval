@@ -11,7 +11,7 @@ import tensorflow as tf
 
 import bigru_model
 import data_util
-
+'''In this script, the summarization functions were created'''
 # with open('../data/training_data.json') as episode:
 #     epi_trans = json.load(episode)
 # test_episodes = json.dumps(epi_trans, sort_keys=True,
@@ -221,7 +221,7 @@ def decode():
                     encoder_len, decoder_len, True)
 
                 outputs = [np.argmax(item) for item in outputs[0]]
-      
+
             else:
                 outputs = model.step_beam(
                     sess, encoder_inputs, encoder_len, geneos=FLAGS.geneos)
@@ -238,7 +238,7 @@ def decode():
         with open(FLAGS.test_output, "w") as f:
             for item in result:
                 print(item, file=f)
-        
+
 
 def main(_):
     if FLAGS.decode:

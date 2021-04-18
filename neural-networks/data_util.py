@@ -1,6 +1,9 @@
 import logging
 
 import numpy as np
+'''In this script, podcast data is loaded in to create corpuses for each word
+in the podcast data and then the corpuses will be used to test summarization
+of a podcast transcript.'''
 
 MARK_PAD = "<PAD>"
 MARK_UNK = "<UNK>"
@@ -183,7 +186,7 @@ def load_test_data(doc_filename, doc_dict):
     logging.info("Load {num} testing documents.".format(num=len(docs)))
     docs = list(map(lambda x: x.split(), docs))
     docid, cover = corpus_map2id(docs, doc_dict[0])
-    
+
     logging.info(
         "Doc dict covers {:.2f}% words.".format(cover * 100))
 

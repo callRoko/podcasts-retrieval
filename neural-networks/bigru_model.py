@@ -7,6 +7,9 @@ import data_util
 
 emb_init = tf.truncated_normal_initializer(mean=0.0, stddev=0.01)
 fc_layer = tf.contrib.layers.fully_connected
+'''This script, bigru model, creates the neural networks for the podcast data.
+The encoder, attention and decode layers are made.'''
+
 
 class BiGRUModel(object):
 
