@@ -1,3 +1,4 @@
+'''In this script, the summarization functions were created'''
 import logging
 import math
 import os
@@ -11,7 +12,6 @@ import tensorflow as tf
 
 import bigru_model
 import data_util
-'''In this script, the summarization functions were created'''
 # with open('../data/training_data.json') as episode:
 #     epi_trans = json.load(episode)
 # test_episodes = json.dumps(epi_trans, sort_keys=True,
@@ -54,6 +54,7 @@ _buckets = [(30, 10), (50, 20), (70, 20), (100, 20), (200, 30)]
 
 
 def create_bucket(source, target):
+    '''Create buckets to start loading in data and parameters'''
     data_set = [[] for _ in _buckets]
     for s, t in zip(source, target):
         t = [data_util.ID_GO] + t + [data_util.ID_EOS]
@@ -98,6 +99,7 @@ def create_model(session, forward_only):
 
 
 def train():
+    '''Starts training data for neural network'''
     logging.info("Preparing summarization data.")
     docid, sumid, doc_dict, sum_dict = \
         data_util.load_data(
@@ -191,6 +193,7 @@ def train():
                 sys.stdout.flush()
 
 def decode():
+    '''Load dictionaries'''
     # Load vocabularies.
     print(os.getcwd())
     doc_dict = data_util.load_dict(FLAGS.data_dir + "/doc_dict.txt")
@@ -241,6 +244,7 @@ def decode():
 
 
 def main(_):
+    '''tells us if we are decoding or training data'''
     if FLAGS.decode:
         print("decoding...")
         decode()

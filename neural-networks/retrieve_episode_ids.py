@@ -1,7 +1,8 @@
-#for this script I will need to create a text file with all the episode ids
+'''In this script, podcast episode ids are created for the training data
+that will then be put into their own .txt file'''
 import json
 import glob
-'''In this script, podcast episode ids are created for the training data'''
+
 
 filepaths = glob.glob('./data/spotify-transcripts/podcasts-transcripts-0to2/spotify-podcasts-2020/podcasts-transcripts/*/*/*/*.json', recursive=True)
 print("sorting podcast ids")

@@ -17,6 +17,7 @@ ID_GO = 3
 
 
 def load_dict(dict_path, max_vocab=None):
+    '''this function will load in the transcript data as a dictionary'''
     logging.info("Try load dict from {}.".format(dict_path))
     try:
         dict_file = open(dict_path, encoding='utf-8')
@@ -39,6 +40,7 @@ def load_dict(dict_path, max_vocab=None):
 
 
 def create_dict(dict_path, corpus, max_vocab=None):
+    '''creates the dictionary'''
     logging.info("Create dict {}.".format(dict_path))
     counter = {}
     for line in corpus:
@@ -74,6 +76,7 @@ def create_dict(dict_path, corpus, max_vocab=None):
 
 
 def corpus_map2id(data, tok2id):
+    '''maps the corpus to specific number ids'''
     ret = []
     unk = 0
     tot = 0
@@ -91,6 +94,7 @@ def corpus_map2id(data, tok2id):
 
 
 def sen_map2tok(sen, id2tok):
+    '''maps sentences to their tokens'''
     return list(map(lambda x: id2tok[x], sen))
 
 
@@ -100,6 +104,7 @@ def load_data(doc_filename,
               sum_dict_path,
               max_doc_vocab=None,
               max_sum_vocab=None):
+    '''loads transcript data into neural network'''
     logging.info(
         "Load document from {}; summary from {}.".format(
             doc_filename, sum_filename))
@@ -138,6 +143,7 @@ def load_valid_data(doc_filename,
                     sum_filename,
                     doc_dict,
                     sum_dict):
+    '''loads summary data and transcript data'''
     logging.info(
         "Load validation document from {}; summary from {}.".format(
             doc_filename, sum_filename))
@@ -163,6 +169,7 @@ def load_valid_data(doc_filename,
 
 
 def corpus_preprocess(corpus):
+    '''preprocesses corpus data'''
     import re
     ret = []
     for line in corpus:
@@ -172,10 +179,12 @@ def corpus_preprocess(corpus):
 
 
 def sen_postprocess(sen):
+    '''returns the sentences after they have been preprocessed'''
     return sen
 
 
 def load_test_data(doc_filename, doc_dict):
+    '''loads in test data for it to be mapped to corpus and number ids'''
     print(doc_filename)
     logging.info("Load test document from {doc}.".format(doc=doc_filename))
 

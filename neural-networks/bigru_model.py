@@ -1,3 +1,5 @@
+'''This script, bigru model, creates the neural networks for the podcast data.
+The encoder, attention and decode layers are made.'''
 import random
 
 import numpy as np
@@ -7,8 +9,6 @@ import data_util
 
 emb_init = tf.truncated_normal_initializer(mean=0.0, stddev=0.01)
 fc_layer = tf.contrib.layers.fully_connected
-'''This script, bigru model, creates the neural networks for the podcast data.
-The encoder, attention and decode layers are made.'''
 
 
 class BiGRUModel(object):
@@ -25,7 +25,7 @@ class BiGRUModel(object):
                  learning_rate,
                  forward_only=False,
                  dtype=tf.float32):
-
+             '''this function initializes the neural network'''
         self.source_vocab_size = source_vocab_size
         self.target_vocab_size = target_vocab_size
         self.buckets = buckets
@@ -176,7 +176,7 @@ class BiGRUModel(object):
              decoder_len,
              forward_only,
              summary_writer=None):
-
+        '''creating the steps for the neural network'''
         # dim fit is important for sequence_mask
         # TODO better way to use sequence_mask
         if encoder_inputs.shape[1] != max(encoder_len):
@@ -213,7 +213,7 @@ class BiGRUModel(object):
                   encoder_len,
                   max_len=12,
                   geneos=True):
-
+        '''creates the step beams and the attention states'''
         beam_size = self.batch_size
 
         if encoder_inputs.shape[0] == 1:
@@ -288,11 +288,13 @@ class BiGRUModel(object):
 
 
     def add_pad(self, data, fixlen):
+        '''creates the padding for the steps'''
         data = map(lambda x: x + [data_util.ID_PAD] * (fixlen - len(x)), data)
         data = list(data)
         return np.asarray(data)
 
     def get_batch(self, data, bucket_id):
+        '''creates the batches for the decoder state'''
         encoder_inputs, decoder_inputs = [], []
         encoder_len, decoder_len = [], []
 
