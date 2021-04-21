@@ -15,7 +15,7 @@ for transcript in transcript_filenames:
         lines = podcast_convo.read()
         words = lines.split(' ')
         random_samples = random.choices(words, k=300)
-        new_transcript =' '.join(random_samples)
+        new_transcript = ' '.join(random_samples)
 # take those new files and write them into the podcast_dataset2 folder
     new_files = os.path.join(save_path, filename)
     with open(new_files, 'w') as bert_podcast_files:
