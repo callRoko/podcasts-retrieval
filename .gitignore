@@ -40,6 +40,7 @@ Thumbs.db
 ################
 *.tsv
 *.db
+*.txt
 # Jupyter Notebook
 .ipynb_checkpoints
 ### Python ###
