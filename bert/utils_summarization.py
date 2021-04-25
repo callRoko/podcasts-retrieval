@@ -1,3 +1,5 @@
+'''In this script the class and methods to train seq2seq models were created
+using CNN & Daily News datasets'''
 import os
 from collections import deque
 
@@ -51,6 +53,7 @@ class CNNDMDataset(Dataset):
         return len(self.documents)
 
     def __getitem__(self, idx):
+        '''Returns the items about each story in dataset'''
         document_path = self.documents[idx]
         document_name = document_path.split("/")[-1]
         with open(document_path, encoding="utf-8") as source:
@@ -94,6 +97,7 @@ def process_story(raw_story):
 
 
 def _add_missing_period(line):
+    '''Adding missing periods in place of other punctuation marks'''
     END_TOKENS = [".", "!", "?", "...", "'", "`", '"', "\u2019", "\u2019", ")"]
     if line.startswith("@highlight"):
         return line

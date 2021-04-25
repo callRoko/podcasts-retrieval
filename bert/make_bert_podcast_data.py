@@ -1,5 +1,5 @@
-'''This scripts reads in podcast transcript data and then creates a new
-folder for it in order to start summarizing'''
+'''In this script, I will be reading in the podcast transcripts and creating
+a new folder with .txt files in the folder'''
 from glob import glob
 import os
 import random

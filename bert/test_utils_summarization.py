@@ -12,7 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-'''This script will run summarization on testing data'''
+'''This script has the test summarization processing test class and methods'''
 import unittest
 
 import numpy as np
@@ -78,21 +78,25 @@ class SummarizationDataProcessingTest(unittest.TestCase):
         self.assertEqual(expected_summary_lines, summary_lines)
 
     def test_build_mask_no_padding(self):
+        '''Adding a mask but no padding'''
         sequence = torch.tensor([1, 2, 3, 4])
         expected = torch.tensor([1, 1, 1, 1])
         np.testing.assert_array_equal(build_mask(sequence, 0).numpy(), expected.numpy())
 
     def test_build_mask(self):
+        '''Testing if the test mask was built'''
         sequence = torch.tensor([1, 2, 3, 4, 23, 23, 23])
         expected = torch.tensor([1, 1, 1, 1, 0, 0, 0])
         np.testing.assert_array_equal(build_mask(sequence, 23).numpy(), expected.numpy())
 
     def test_build_mask_with_padding_equal_to_one(self):
+        '''Comparing the sequence with what was expected'''
         sequence = torch.tensor([8, 2, 3, 4, 1, 1, 1])
         expected = torch.tensor([1, 1, 1, 1, 0, 0, 0])
         np.testing.assert_array_equal(build_mask(sequence, 1).numpy(), expected.numpy())
 
     def test_compute_token_type_ids(self):
+        '''Test token ids'''
         separator = 101
         batch = torch.tensor([[1, 2, 3, 4, 5, 6], [1, 2, 3, 101, 5, 6], [1, 101, 3, 4, 101, 6]])
         expected = torch.tensor([[1, 1, 1, 1, 1, 1], [1, 1, 1, 0, 0, 0], [1, 0, 0, 0, 1, 1]])

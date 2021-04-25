@@ -1,5 +1,5 @@
-'''this script will summarize all of our data'''
 #! /usr/bin/python3
+'''In this script, the summarization functions were created'''
 import argparse
 import logging
 import os
@@ -30,7 +30,7 @@ Batch = namedtuple("Batch", ["document_names", "batch_size", "src", "segs", "mas
 
 
 def evaluate(args):
-    '''Evaluates the summary'''
+    '''Evaluating how well the summarization function performed'''
     tokenizer = BertTokenizer.from_pretrained("bert-base-uncased", do_lower_case=True)
     model = BertAbs.from_pretrained("bertabs-finetuned-cnndm")
     model.to(args.device)
@@ -145,7 +145,7 @@ def format_summary(translation):
 
 
 def format_rouge_scores(scores):
-    '''Formats the rouges scores into a more readable format'''
+    '''Formatting rouge scores to make them more readable'''
     return """\n
 ****** ROUGE SCORES ******
 
@@ -176,7 +176,7 @@ Recall    >> {:.3f}""".format(
 
 
 def save_rouge_scores(str_scores):
-    '''Saves the rouge scores in its own .txt file'''
+    '''Saving rouge scores in their own .txt file'''
     with open("rouge_scores.txt", "w") as output:
         output.write(str_scores)
 
@@ -187,12 +187,12 @@ def save_rouge_scores(str_scores):
 
 
 def build_data_iterator(args, tokenizer):
-    '''builds data iterator for with words and tokens'''
+    '''Building data iterator get the data ready for summarization'''
     dataset = load_and_cache_examples(args, tokenizer)
     sampler = SequentialSampler(dataset)
 
     def collate_fn(data):
-        '''Organizes text data in a specific order'''
+        '''taking in data from the collate function below'''
         return collate(data, tokenizer, block_size=512, device=args.device)
 
     iterator = DataLoader(dataset, sampler=sampler, batch_size=args.batch_size, collate_fn=collate_fn,)
@@ -201,7 +201,7 @@ def build_data_iterator(args, tokenizer):
 
 
 def load_and_cache_examples(args, tokenizer):
-    '''loads in example data'''
+    '''loading in example data to improve summarization'''
     dataset = CNNDMDataset(args.documents_dir)
     return dataset
 
@@ -317,7 +317,7 @@ def main():
 
 
 def documents_dir_is_valid(path):
-    '''Checks to make sure the document directory is valid'''
+    '''Checking to ensure that document directory is a valid directory'''
     if not os.path.exists(path):
         return False
 
